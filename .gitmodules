@@ -1,6 +1,3 @@
-[submodule "plugins/flydb"]
-	path = plugins/flydb
-	url = git@github.com:fchampalimaud/flydb.git
 [submodule "plugins/rodentdb"]
 	path = plugins/rodentdb
 	url = git@github.com:fchampalimaud/rodentdb.git
