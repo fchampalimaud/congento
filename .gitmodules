@@ -1,6 +1,3 @@
-[submodule "plugins/rodentdb"]
-	path = plugins/rodentdb
-	url = git@github.com:fchampalimaud/rodentdb.git
 [submodule "libraries/pyforms-web"]
 	path = libraries/pyforms-web
 	url = git@github.com:UmSenhorQualquer/pyforms-web.git
