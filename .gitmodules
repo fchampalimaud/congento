@@ -4,3 +4,6 @@
 [submodule "libraries/dynamic-rest"]
 	path = libraries/dynamic-rest
 	url = git@github.com:AltSchool/dynamic-rest.git
+[submodule "plugins/confirm-users-app"]
+	path = plugins/confirm-users-app
+	url = git@github.com:fchampalimaud/confirm-users-app.git

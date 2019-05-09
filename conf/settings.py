@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'confirm_users',
     'congentodb',
 
     # 3rd party apps
@@ -158,7 +159,7 @@ STATICFILES_DIRS = (
 
 SITE_ID = 1  # Required for allauth module
 LOGIN_REDIRECT_URL = "/"
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = False
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
