@@ -11,7 +11,7 @@ class FlySerializer(BaseSerializer):
             'chry', 'bal1', 'chr2', 'bal2',
             'chr3', 'bal3', 'chr4', 'chru',
             'legacy1', 'legacy2', 'legacy3',
-            'flydbid', 'hospital', 'died',
+            'flydbid',
             'genotype', 'category', 'specie',
             'remote_id'
         )
