@@ -1,0 +1,17 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+pyforms-web = {editable = true,path = "./libraries/pyforms-web"}
+notifications-central = {editable = true,path = "./plugins/notifications-central"}
+confirm-users = {editable = true,path = "./plugins/confirm-users-app"}
+dynamic-rest = {editable = true,path = "./libraries/dynamic-rest"}
+mysqlclient = "*"
+django-model-utils = "*"
+
+[requires]
+python_version = "3.7"
