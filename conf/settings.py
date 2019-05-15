@@ -29,6 +29,7 @@ ALLOWED_HOSTS = [
     hostname for hostname in os.getenv("ALLOWED_HOSTS", "localhost").split(",")
 ]
 
+SITE_ID = 1
 
 # Application definition
 
@@ -81,9 +82,7 @@ ROOT_URLCONF = 'conf.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-        #    os.path.join(BASE_DIR, 'libraries', 'dynamic-rest', 'dynamic_rest', 'templates')
-        ],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -139,6 +138,9 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
+LOGIN_URL = "/accounts/login/"
+LOGIN_REDIRECT_URL = "/"
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -156,17 +158,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.1/howto/static-files/
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
+
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
 
 
-SITE_ID = 1  # Required for allauth module
-LOGIN_REDIRECT_URL = "/"
-ACCOUNT_EMAIL_REQUIRED = False
 # E-mail
 
 EMAIL_HOST = os.getenv("EMAIL_HOST", default="localhost")
@@ -189,6 +187,9 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_USERNAME_REQUIRED = False
 
+
+# django-rest-framework
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
@@ -202,6 +203,8 @@ REST_FRAMEWORK = {
     )
 }
 
+
+# dynamic-rest
 
 DYNAMIC_REST = {
     'ENABLE_LINKS': True,
