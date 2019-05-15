@@ -20,12 +20,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^q#j&%%1c*^4bojpd2v(71^pehwczt)ng294x5e^8-22(m4(oa'
+SECRET_KEY = os.getenv("SECRET_KEY", "changeme!")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    hostname for hostname in os.getenv("ALLOWED_HOSTS", "localhost").split(",")
+]
 
 
 # Application definition
@@ -103,11 +105,11 @@ WSGI_APPLICATION = 'conf.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "congentodb",
-        "USER": "root",
-        "PASSWORD": "123",
-        "HOST": "localhost",
-        "PORT": "3306",
+        "NAME": os.getenv("DATABASE_NAME"),
+        "USER": os.getenv("DATABASE_USERNAME"),
+        "PASSWORD": os.getenv("DATABASE_PASSWORD"),
+        "HOST": os.getenv("DATABASE_HOST", default="localhost"),
+        "PORT": os.getenv("DATABASE_PORT", default=3306),
     },
 }
 

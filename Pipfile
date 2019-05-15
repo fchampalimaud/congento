@@ -11,6 +11,7 @@ confirm-users = {editable = true,path = "./plugins/confirm-users-app"}
 dynamic-rest = {editable = true,path = "./libraries/dynamic-rest"}
 mysqlclient = "*"
 django-model-utils = "*"
+django-dotenv = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"

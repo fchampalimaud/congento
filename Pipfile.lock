@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e511796e0d3de7d2a30f63f7498d7320d3cfe86bc9fa41643e9398840faa3e0d"
+            "sha256": "71f5935c02d327e7573cbdc92288a4da84cd6f7834d8aee21f6164d05697ef0b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -65,6 +65,14 @@
                 "sha256:4444434c2f43188e16e0a7732c3638e12787ca7e5032f69b6d30b2912f53809e"
             ],
             "version": "==0.39.1"
+        },
+        "django-dotenv": {
+            "hashes": [
+                "sha256:3812bb0f4876cf31f902aad140f0645e120e51ee30eb7c40c22050f58a0e4adb",
+                "sha256:a9b1b40a70bd321acd231926acedb9bd2c5e873e33a1873b34a7276d196a765e"
+            ],
+            "index": "pypi",
+            "version": "==1.4.2"
         },
         "django-jfu-pyforms": {
             "hashes": [
