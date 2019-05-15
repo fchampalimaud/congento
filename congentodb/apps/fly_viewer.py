@@ -23,9 +23,6 @@ class FlyViewer(ModelViewFormWidget):
             'chr4',
             'chru'
         ),
-        segment(
-            ('hospital', 'died'),
-        ),
         'h3:More',
         segment('flydbid'),
     ]
