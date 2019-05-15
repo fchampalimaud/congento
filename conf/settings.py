@@ -167,6 +167,17 @@ STATIC_URL = "/static/"
 SITE_ID = 1  # Required for allauth module
 LOGIN_REDIRECT_URL = "/"
 ACCOUNT_EMAIL_REQUIRED = False
+# E-mail
+
+EMAIL_HOST = os.getenv("EMAIL_HOST", default="localhost")
+EMAIL_PORT = os.getenv("EMAIL_PORT", default=1025)  # Used by MailHog
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", default="webmaster@localhost")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", default="")
+EMAIL_USE_TLS = not DEBUG
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_SUBJECT_PREFIX = "[CONGENTO] "
+SERVER_EMAIL = EMAIL_HOST_USER
 
 
 # django-allauth
