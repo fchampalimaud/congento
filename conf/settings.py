@@ -31,6 +31,18 @@ ALLOWED_HOSTS = [
 
 SITE_ID = 1
 
+ADMINS = [
+    tuple(admin.split(","))
+    for admin in os.getenv("ADMINS", "").split(";")
+    if admin
+]
+
+MANAGERS = [
+    tuple(manager.split(","))
+    for manager in os.getenv("MANAGERS", "").split(";")
+    if manager
+] or ADMINS
+
 # Application definition
 
 INSTALLED_APPS = [
