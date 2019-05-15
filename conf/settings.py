@@ -45,7 +45,7 @@ MANAGERS = [
 
 INSTALLED_APPS = [
     # local apps
-    "congentodb",
+    "congentodb.apps.CongentoDBConfig",
     # 3rd party apps
     "confirm_users",
     "notifications",
