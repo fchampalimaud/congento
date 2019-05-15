@@ -1,6 +1,4 @@
 from pyforms_web.widgets.django.modelviewform import ModelViewFormWidget
-from pyforms_web.organizers import segment
-from ..models import Zebrafish
 from confapp import conf
 
 

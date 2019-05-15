@@ -1,6 +1,5 @@
 from pyforms_web.widgets.django.modelviewform import ModelViewFormWidget
 from pyforms_web.organizers import segment
-from ..models import Fly
 from confapp import conf
 
 
