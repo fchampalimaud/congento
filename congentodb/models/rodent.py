@@ -1,13 +1,11 @@
-from django.core.exceptions import ValidationError
 from django.db import models
+
 from model_utils import Choices
+
 
 class Rodent(models.Model):
 
-    SPECIES = Choices(
-        ("rat", "Rat"),
-        ("mouse", "Mouse")
-    )
+    SPECIES = Choices(("rat", "Rat"), ("mouse", "Mouse"))
 
     BACKGROUNDS = Choices(
         ("c57bl", "C57BL/6"),
@@ -43,18 +41,16 @@ class Rodent(models.Model):
         ("none", "Unavailable"),
     )
 
-    id = models.AutoField('Id', primary_key=True)
-
-    created      = models.DateTimeField('Created', auto_now_add=True)
-    modified     = models.DateTimeField('Updated', auto_now=True)
-    species      = models.CharField(max_length=5, choices=SPECIES)
-    strain_name  = models.CharField(max_length=20)
-    common_name  = models.CharField(max_length=20)
-    origin       = models.CharField(max_length=20)
+    created = models.DateTimeField("Created", auto_now_add=True)
+    modified = models.DateTimeField("Updated", auto_now=True)
+    species = models.CharField(max_length=5, choices=SPECIES)
+    strain_name = models.CharField(max_length=20)
+    common_name = models.CharField(max_length=20)
+    origin = models.CharField(max_length=20)
     availability = models.CharField(max_length=4, choices=AVAILABILITIES)
-    comments     = models.TextField(blank=True)
-    link         = models.URLField(blank=True)
-    mta          = models.BooleanField(verbose_name="MTA", default=False)
+    comments = models.TextField(blank=True)
+    link = models.URLField(blank=True)
+    mta = models.BooleanField(verbose_name="MTA", default=False)
 
     # background
     background = models.CharField(max_length=5, choices=BACKGROUNDS)
@@ -68,8 +64,8 @@ class Rodent(models.Model):
     model_type = models.CharField(max_length=5, choices=MODEL_TYPES)
     model_type_other = models.CharField(max_length=20, verbose_name="Other", blank=True)
 
-    remote_id = models.BigIntegerField('Remote id')
-    institution = models.ForeignKey('Institution', on_delete=models.CASCADE)
+    remote_id = models.BigIntegerField("Remote id")
+    institution = models.ForeignKey("Institution", on_delete=models.CASCADE)
 
     @property
     def institution_name(self):
@@ -77,8 +73,6 @@ class Rodent(models.Model):
             return None
         else:
             return self.institution.name
-
-
 
     def __str__(self):
         return self.strain_name
