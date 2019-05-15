@@ -96,3 +96,6 @@ class Fly(models.Model):
                 result += " (" + self.chru + ")"
 
         return result
+
+    def legacy_source(self):
+        return self.legacy1 or self.legacy2 or self.legacy3 or ""

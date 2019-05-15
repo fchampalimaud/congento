@@ -12,7 +12,7 @@ class FliesList(ModelAdminWidget):
 
     TITLE = "Flies"
 
-    LIST_DISPLAY = ["specie", "genotype", "category"]
+    LIST_DISPLAY = ["specie", "genotype", "category", "legacy_source"]
 
     LIST_FILTER = ["specie", "category"]
 
