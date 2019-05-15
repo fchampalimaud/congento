@@ -69,6 +69,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+if DEBUG:
+    INSTALLED_APPS += ["debug_toolbar"]
+    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
+    INTERNAL_IPS = ["127.0.0.1"]
+
 ROOT_URLCONF = 'conf.urls'
 
 TEMPLATES = [
@@ -155,13 +160,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static", "img"),
-    os.path.join(BASE_DIR, "static", "images"),
-    os.path.join(BASE_DIR, "static", "css"),
-    # os.path.join(BASE_DIR,'static', "js"),
-)
 
 
 SITE_ID = 1  # Required for allauth module

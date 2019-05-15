@@ -13,6 +13,7 @@ mysqlclient = "*"
 django-model-utils = "*"
 
 [dev-packages]
+django-debug-toolbar = "*"
 black = "==19.3b0"
 
 [requires]
