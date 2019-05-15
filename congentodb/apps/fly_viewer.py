@@ -3,9 +3,8 @@ from pyforms_web.organizers import segment
 from ..models import Fly
 from confapp import conf
 
-class FlyViewer(ModelViewFormWidget):
 
-    MODEL = Fly
+class FlyViewer(ModelViewFormWidget):
     LAYOUT_POSITION = conf.ORQUESTRA_NEW_BIGWINDOW
 
     FIELDSETS = [
@@ -31,7 +30,6 @@ class FlyViewer(ModelViewFormWidget):
         segment('flydbid'),
     ]
 
-    
     def has_add_permissions(self):
         return False
 

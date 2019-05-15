@@ -5,18 +5,15 @@ from confapp import conf
 
 
 class RodentViewer(ModelViewFormWidget):
-
-    MODEL = Rodent
     LAYOUT_POSITION = conf.ORQUESTRA_NEW_BIGWINDOW
 
     FIELDSETS = [
-        'public',
         ("species", "strain_name", "common_name"),
         ("background", "background_other", " "),
         ("genotype", "genotype_other", " "),
         ("model_type", "model_type_other", " "),
         "origin",
-        ("availability", "mta", 'lab'),
+        ("availability", "mta"),
         "link",
         "comments"
     ]

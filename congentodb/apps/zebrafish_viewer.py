@@ -5,15 +5,12 @@ from confapp import conf
 
 
 class ZebrafishViewer(ModelViewFormWidget):
-
-    MODEL = Zebrafish
     LAYOUT_POSITION = conf.ORQUESTRA_NEW_BIGWINDOW
 
     FIELDSETS = [
-        'public',
         ("line_name", "line_number", "line_type", "line_type_other"),
         ("background", "genotype", "phenotype", "origin"),
-        ("availability", "mta", 'lab'),
+        ("availability", "mta"),
         "link",
         "comments"
     ]
