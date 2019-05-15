@@ -39,7 +39,7 @@ class ZebrafishList(ModelAdminWidget):
 
     LAYOUT_POSITION = conf.ORQUESTRA_HOME
     ORQUESTRA_MENU = "top"
-    ORQUESTRA_MENU_ORDER = 1
+    ORQUESTRA_MENU_ORDER = 4
     ORQUESTRA_MENU_ICON = "tint blue"
 
     def __init__(self, *args, **kwargs):
