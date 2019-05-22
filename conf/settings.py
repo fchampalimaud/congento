@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # local apps
     "congentodb.apps.CongentoDBConfig",
     # 3rd party apps
+    "fishdb.apps.FishDBConfig",
     "confirm_users.apps.ConfirmUsersConfig",
     "notifications.apps.NotificationsConfig",
     "orquestra",
