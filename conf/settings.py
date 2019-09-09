@@ -45,8 +45,8 @@ INSTALLED_APPS = [
     # local apps
     "congentodb.apps.CongentoDBConfig",
     # 3rd party apps
-    "confirm_users",
-    "notifications",
+    "confirm_users.apps.ConfirmUsersConfig",
+    "notifications.apps.NotificationsConfig",
     "orquestra",
     "pyforms_web.web",
     "jfu",
