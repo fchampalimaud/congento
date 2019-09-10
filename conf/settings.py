@@ -43,9 +43,9 @@ MANAGERS = [
 
 INSTALLED_APPS = [
     # local apps
-    "congentodb.apps.CongentoDBConfig",
+    # "congentodb.apps.CongentoDBConfig",
+    "users.apps.UsersConfig",
     # 3rd party apps
-    "fishdb.apps.FishDBConfig",
     "confirm_users.apps.ConfirmUsersConfig",
     "notifications.apps.NotificationsConfig",
     "orquestra",
@@ -142,6 +142,8 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
+AUTH_USER_MODEL = 'users.User'
+
 LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "/"
 
@@ -197,15 +199,18 @@ ACCOUNT_USERNAME_REQUIRED = False
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.TokenAuthentication",
-        "rest_framework.authentication.BasicAuthentication",
-        "rest_framework.authentication.SessionAuthentication",
+        # "rest_framework.authentication.BasicAuthentication",
+        # "rest_framework.authentication.SessionAuthentication",
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    "PAGE_SIZE": 50,
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    # ],
     "DEFAULT_RENDERER_CLASSES": (
         "rest_framework.renderers.JSONRenderer",
         "dynamic_rest.renderers.DynamicBrowsableAPIRenderer",
     ),
+    "PAGE_SIZE": 50,
 }
 
 
@@ -213,5 +218,5 @@ REST_FRAMEWORK = {
 
 DYNAMIC_REST = {
     "ENABLE_LINKS": True,
-    "DEBUG": os.environ.get("DYNAMIC_REST_DEBUG", "false").lower() == "true",
+    "DEBUG": DEBUG,
 }
