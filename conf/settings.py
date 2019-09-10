@@ -42,8 +42,11 @@ MANAGERS = [
 # Application definition
 
 INSTALLED_APPS = [
+    # these plugins need to come first to overwrite pyforms apps
+    "fishdb.apps.FishDBConfig",
     # local apps
     # "congentodb.apps.CongentoDBConfig",
+    "congento.apps.CongentoConfig",
     "users.apps.UsersConfig",
     # 3rd party apps
     "confirm_users.apps.ConfirmUsersConfig",
