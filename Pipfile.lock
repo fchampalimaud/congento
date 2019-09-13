@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "30205015a4fb2f13a6e5035373c00c254404f5267687b81cda6eb538e772bb2f"
+            "sha256": "8eb2fdaec69c54e4d0d1aec70ae5cd3d2db9c54b8aeaa118763f606abc796c31"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -91,17 +91,6 @@
             "index": "pypi",
             "version": "==3.1.2"
         },
-        "djangorestframework": {
-            "hashes": [
-                "sha256:1f6baf40ed456ed2af6bd1a4ff8bbc3503cebea16509993aea2b7085bc097766",
-                "sha256:9f9e94e8d22b100ed3a43cee8c47a7ff7b185e778a1f2da9ec5c73fc4e081b87"
-            ],
-            "version": "==3.7.7"
-        },
-        "dynamic-rest": {
-            "editable": true,
-            "path": "./libraries/dynamic-rest"
-        },
         "filelock": {
             "hashes": [
                 "sha256:18d82244ee114f543149c66a6e0c14e9c4f8a1044b5cdaadd0f82159d6a6ff59",
@@ -119,12 +108,6 @@
                 "sha256:ea8b7f6188e6fa117537c3df7da9fc686d485087abf6ac197f9c46432f7e4a3c"
             ],
             "version": "==2.8"
-        },
-        "inflection": {
-            "hashes": [
-                "sha256:18ea7fb7a7d152853386523def08736aa8c32636b047ade55f7578c4edeb16ca"
-            ],
-            "version": "==0.3.1"
         },
         "mysqlclient": {
             "hashes": [
