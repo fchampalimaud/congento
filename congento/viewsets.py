@@ -12,10 +12,10 @@ from .serializers.fish import FishCategorySerializer
 class BaseView(DynamicModelViewSet):
     ...
 
+
 class FishViewSet(BaseView):
     queryset = Fish.objects.all()
     serializer_class = FishSerializer
-
 
 
 class FishSpeciesViewSet(BaseView):
@@ -23,8 +23,6 @@ class FishSpeciesViewSet(BaseView):
     serializer_class = FishSpeciesSerializer
 
 
-
 class FishCategoryViewSet(BaseView):
     queryset = Category.objects.all()
     serializer_class = FishCategorySerializer
-

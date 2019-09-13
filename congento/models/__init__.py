@@ -15,13 +15,18 @@ class CongentoRecord(models.Model):
 
 
 class Fish(CongentoRecord, AbstractFish):
-    #redirect foreign keys to the
+    # Redirect foreign keys to the Models defined here
     category = models.ForeignKey(
-        to="Category", on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_related"
+        to="Category",
+        on_delete=models.PROTECT,
+        related_name="%(app_label)s_%(class)s_related",
     )
     species = models.ForeignKey(
-        to="Species", on_delete=models.PROTECT, related_name="%(app_label)s_%(class)s_related"
+        to="Species",
+        on_delete=models.PROTECT,
+        related_name="%(app_label)s_%(class)s_related",
     )
+
 
 class Category(AbstractCategory):
     ...
