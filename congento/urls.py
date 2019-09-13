@@ -2,13 +2,13 @@ from django.urls import include, path
 
 from dynamic_rest import routers
 
-from . import views
+from . import viewsets
 
 router = routers.DynamicRouter()
-# router.register(r'fly', views.FlyViewSet)
-# router.register(r'rodent', views.RodentViewSet)
-router.register('fish/', views.FishViewSet)
-# router.register(r'fish_species', views.FishSpeciesViewSet)
+
+router.register('fish', viewsets.FishViewSet)
+router.register('fish-species', viewsets.FishSpeciesViewSet)
+router.register('fish-categories', viewsets.FishCategoryViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
