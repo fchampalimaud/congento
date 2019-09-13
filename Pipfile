@@ -18,6 +18,7 @@ fishdb = {editable = true,path = "./plugins/fishdb"}
 [dev-packages]
 django-debug-toolbar = "*"
 black = "==19.3b0"
+django-extensions = "*"
 
 [requires]
 python_version = "3.7"
