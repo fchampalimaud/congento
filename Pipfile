@@ -10,6 +10,7 @@ orquestra = {editable = true,path = "./libraries/pyforms-web/orquestra"}
 notifications-central = {editable = true,path = "./plugins/notifications-central"}
 confirm-users = {editable = true,path = "./plugins/confirm-users-app"}
 mysqlclient = "*"
+dynamic-rest = "*"
 django-model-utils = "*"
 django-dotenv = "*"
 fishdb = {editable = true,path = "./plugins/fishdb"}
