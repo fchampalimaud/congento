@@ -4,9 +4,17 @@ from django.contrib import admin
 # admin.site.unregister("fishdb.Fish")
 
 from .models import Fish
+from .models import Institution
 
 # from .models import CongentoFish as Fish
 # from .models import CongentoFish as Fish
+
+
+@admin.register(Institution)
+class InstitutionAdmin(admin.ModelAdmin):
+    list_display = ("name", "acronym")
+    search_fields = ("name",)
+    readonly_fields = ("key",)
 
 
 @admin.register(Fish)

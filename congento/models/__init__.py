@@ -1,5 +1,7 @@
 from django.db import models
 
+from .institution import Institution
+
 from fishdb.base_fish import AbstractFish
 from fishdb.models.category import AbstractCategory
 from fishdb.models.species import AbstractSpecies
