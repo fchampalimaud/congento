@@ -17,19 +17,13 @@ class RodentsList(ModelAdminWidget):
         "strain_name",
         "common_name",
         "background",
-        "genotype",
-        "model_type",
         "origin",
-        "mta",
         "availability",
     ]
 
     LIST_FILTER = [
         "species",
         "background",
-        "genotype",
-        "model_type",
-        "mta",
         "availability",
     ]
 
@@ -38,8 +32,6 @@ class RodentsList(ModelAdminWidget):
         "strain_name__icontains",
         "common_name__icontains",
         "background__icontains",
-        "genotype__icontains",
-        "model_type__icontains",
         "origin__icontains",
     ]
 

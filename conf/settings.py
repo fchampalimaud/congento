@@ -43,10 +43,10 @@ MANAGERS = [
 
 INSTALLED_APPS = [
     # these plugins need to come first to overwrite pyforms apps
-    "fishdb.apps.FishDBConfig",
+    #"fishdb.apps.FishDBConfig",
     # local apps
-    # "congentodb.apps.CongentoDBConfig",
-    "congento.apps.CongentoConfig",
+    "congentodb.apps.CongentoDBConfig",
+    #"congento.apps.CongentoConfig",
     "users.apps.UsersConfig",
     # 3rd party apps
     "confirm_users.apps.ConfirmUsersConfig",
@@ -202,18 +202,14 @@ ACCOUNT_USERNAME_REQUIRED = False
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.TokenAuthentication",
-        # "rest_framework.authentication.BasicAuthentication",
-        # "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
     ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    # ],
-    "DEFAULT_RENDERER_CLASSES": (
-        "rest_framework.renderers.JSONRenderer",
-        "dynamic_rest.renderers.DynamicBrowsableAPIRenderer",
-    ),
-    "PAGE_SIZE": 50,
+    'PAGE_SIZE': 50,
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'dynamic_rest.renderers.DynamicBrowsableAPIRenderer'
+    )
 }
 
 
@@ -223,3 +219,8 @@ DYNAMIC_REST = {
     "ENABLE_LINKS": True,
     "DEBUG": DEBUG,
 }
+
+
+try:
+    exec(open("local-settings.py" ).read())
+except: pass

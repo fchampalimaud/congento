@@ -12,15 +12,12 @@ class FliesList(ModelAdminWidget):
 
     TITLE = "Flies"
 
-    LIST_DISPLAY = ["specie", "genotype", "category", "legacy_source"]
+    LIST_DISPLAY = ["species", "genotype", "categories",]
 
-    LIST_FILTER = ["specie", "category"]
+    LIST_FILTER = ["species", "categories"]
 
     SEARCH_FIELDS = [
         "genotype__icontains",
-        "legacy1__icontains",
-        "legacy2__icontains",
-        "legacy3__icontains",
     ]
 
     EDITFORM_CLASS = FlyViewer

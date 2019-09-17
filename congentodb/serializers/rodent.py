@@ -6,10 +6,10 @@ class RodentSerializer(BaseSerializer):
     class Meta:
         model = Rodent
         name = 'rodent'
-        fields = ( 'id', 'institution_name',
-            'created', 'modified', 'species',
-            'strain_name', 'common_name', 'origin', 'availability',
-            'comments', 'link', 'mta', 'background',
-            'background_other', 'genotype', 'genotype_other',
-            'model_type', 'model_type_other', 'remote_id'
+        fields = ('id', 'institution_name',
+            'created', 'modified', 'availability',
+            'link', 'species', 'strain_name', 'common_name',
+            'origin', 'origin_other', 'category', 'background',
+            'zygosity', 'line_description', 'coat_color',
+            'reporter_gene', 'inducible_cassette', 'remote_id'
         )

@@ -37,16 +37,6 @@ class User(AbstractUser):
     def __str__(self):
         return f"{self.name} <{self.email}>"
 
-    def clean(self):
-        super().clean()
-
-        has_verified_email = EmailAddress.objects.filter(user=self, verified=True).exists()
-        if self.is_active and not has_verified_email:
-            raise ValidationError("User must verify his email first.")
-
-        # if self.is_active and not self.memberships.all().exists():
-        #     raise ValidationError("Active users need to belong to at least one group.")
-
     def get_display_name(self):
         if self.display_name:
             return self.display_name
