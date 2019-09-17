@@ -7,6 +7,3 @@
 [submodule "plugins/notifications-central"]
 	path = plugins/notifications-central
 	url = git@github.com:fchampalimaud/notifications-central.git
-[submodule "plugins/fishdb"]
-	path = plugins/fishdb
-	url = git@github.com:fchampalimaud/fishdb.git
