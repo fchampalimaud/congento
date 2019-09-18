@@ -13,7 +13,6 @@ mysqlclient = "*"
 dynamic-rest = "*"
 django-model-utils = "*"
 django-dotenv = "*"
-fishdb = {editable = true,path = "./plugins/fishdb"}
 
 [dev-packages]
 django-debug-toolbar = "*"
