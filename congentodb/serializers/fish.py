@@ -1,13 +1,14 @@
 from .base_serializer import BaseSerializer
 from ..models.fish import Fish
 
-class FishSerializer(BaseSerializer):
 
+class FishSerializer(BaseSerializer):
     class Meta:
         model = Fish
+        name = "fish"
+        plural_name = "fishes"
         fields = (
-            'id',
-
+            "id",
             "created",
             "modified",
             "availability",
@@ -23,6 +24,5 @@ class FishSerializer(BaseSerializer):
             "line_description",
             "category_name",
             "species_name",
-
-            'remote_id'
+            "remote_id",
         )
