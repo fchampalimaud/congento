@@ -7,31 +7,39 @@ from .fish_viewer import FishViewer
 
 class FishList(ModelAdminWidget):
 
-    UID = "Fish"
+    UID = "fish"
     MODEL = Fish
 
     TITLE = "Fish"
 
     LIST_DISPLAY = [
-        "line_name",
-        "line_number",
-        "line_type",
-        "background",
+        "species_name",
+        "category_name",
+        "strain_name",
         "genotype",
+        "background",
         "origin",
         "mta",
         "availability",
     ]
 
-    LIST_FILTER = ["line_type", "mta", "availability"]
+    LIST_FILTER = [
+        "species_name",
+        "category_name",
+        "quarantine",
+        # "location",
+        "mta",
+        "availability",
+    ]
 
     SEARCH_FIELDS = [
-        "line_name__icontains",
-        "line_number__icontains",
-        "line_type__icontains",
+        "strain_name__icontains",
+        "common_name__icontains",
         "background__icontains",
         "genotype__icontains",
+        "phenotype__icontains",
         "origin__icontains",
+        "line_description__icontains",
     ]
 
     EDITFORM_CLASS = FishViewer
