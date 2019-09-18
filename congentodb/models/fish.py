@@ -41,6 +41,10 @@ class Fish(models.Model):
     remote_id = models.BigIntegerField("Remote ID")
     institution = models.ForeignKey("Institution", on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name = "fish"
+        verbose_name_plural = "fish"
+
     def __str__(self):
         return self.line_name
 
