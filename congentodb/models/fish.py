@@ -37,8 +37,9 @@ class Fish(models.Model):
     category_name = models.CharField(max_length=40)
     species_name = models.CharField(max_length=80)
 
-    remote_id = models.BigIntegerField("Remote id")
-    institution_name = models.CharField(max_length=255, blank=True, null=True)
+    # Fields required for the sync mechanism
+    remote_id = models.BigIntegerField("Remote ID")
+    institution = models.ForeignKey("Institution", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.line_name

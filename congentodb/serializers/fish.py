@@ -6,7 +6,7 @@ class FishSerializer(BaseSerializer):
     class Meta:
         model = Fish
         fields = (
-            'id', 'institution_name',
+            'id',
 
             "created",
             "modified",
