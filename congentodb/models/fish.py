@@ -46,7 +46,7 @@ class Fish(models.Model):
         verbose_name_plural = "fish"
 
     def __str__(self):
-        return self.line_name
+        return self.strain_name
 
     @property
     def institution_name(self):
