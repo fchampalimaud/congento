@@ -2,7 +2,7 @@ from pyforms_web.widgets.django.modelviewform import ModelViewFormWidget
 from confapp import conf
 
 
-class ZebrafishViewer(ModelViewFormWidget):
+class FishViewer(ModelViewFormWidget):
     LAYOUT_POSITION = conf.ORQUESTRA_NEW_BIGWINDOW
 
     FIELDSETS = [

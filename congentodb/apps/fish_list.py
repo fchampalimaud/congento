@@ -1,16 +1,16 @@
 from confapp import conf
 from pyforms_web.widgets.django import ModelAdminWidget
 
-from congentodb.models import Zebrafish
-from .zebrafish_viewer import ZebrafishViewer
+from congentodb.models import Fish
+from .fish_viewer import FishViewer
 
 
-class ZebrafishList(ModelAdminWidget):
+class FishList(ModelAdminWidget):
 
-    UID = "zebrafish"
-    MODEL = Zebrafish
+    UID = "Fish"
+    MODEL = Fish
 
-    TITLE = "Zebrafish"
+    TITLE = "Fish"
 
     LIST_DISPLAY = [
         "line_name",
@@ -34,7 +34,7 @@ class ZebrafishList(ModelAdminWidget):
         "origin__icontains",
     ]
 
-    EDITFORM_CLASS = ZebrafishViewer
+    EDITFORM_CLASS = FishViewer
     USE_DETAILS_TO_EDIT = False
 
     LAYOUT_POSITION = conf.ORQUESTRA_HOME

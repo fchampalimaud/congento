@@ -1,7 +1,7 @@
-from .models import Fly, Rodent, Zebrafish, Institution
+from .models import Fly, Rodent, Fish, Institution
 from .serializers.fly import FlySerializer
 from .serializers.rodent import RodentSerializer
-from .serializers.zebrafish import ZebrafishSerializer
+from .serializers.fish import FishSerializer
 from dynamic_rest.viewsets import DynamicModelViewSet
 from dynamic_rest.viewsets import exceptions
 
@@ -55,7 +55,7 @@ class RodentViewSet(BaseView):
     queryset = Rodent.objects.all()
     serializer_class = RodentSerializer
 
-class ZebrafishViewSet(BaseView):
-    queryset = Zebrafish.objects.all()
-    serializer_class = ZebrafishSerializer
+class FishViewSet(BaseView):
+    queryset = Fish.objects.all()
+    serializer_class = FishSerializer
 
