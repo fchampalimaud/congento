@@ -10,31 +10,31 @@ from .. import models
 User = get_user_model()
 
 
-class MembershipInlineForm(ModelFormWidget):
-    FIELDSETS = ["group", "is_responsible", "is_manager"]
+# class MembershipInlineForm(ModelFormWidget):
+#     FIELDSETS = ["group", "is_responsible", "is_manager"]
 
-    LAYOUT_POSITION = conf.ORQUESTRA_NEW_WINDOW
+#     LAYOUT_POSITION = conf.ORQUESTRA_NEW_WINDOW
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
 
-        self.is_manager.checkbox_type = ""
-        self.is_responsible.checkbox_type = ""
+#         self.is_manager.checkbox_type = ""
+#         self.is_responsible.checkbox_type = ""
 
-        self.is_manager.label_visible = False
-        self.is_responsible.label_visible = False
+#         self.is_manager.label_visible = False
+#         self.is_responsible.label_visible = False
 
 
-class MembershipInline(ModelAdminWidget):
-    MODEL = models.Membership
+# class MembershipInline(ModelAdminWidget):
+#     MODEL = models.Membership
 
-    LIST_DISPLAY = ["group", "is_responsible", "is_manager"]
-    LIST_HEADERS = ["Group", "Responsible", "Manager"]
+#     LIST_DISPLAY = ["group", "is_responsible", "is_manager"]
+#     LIST_HEADERS = ["Group", "Responsible", "Manager"]
 
-    EDITFORM_CLASS = MembershipInlineForm
+#     EDITFORM_CLASS = MembershipInlineForm
 
-    USE_DETAILS_TO_ADD = False  # required to have form in NEW_TAB
-    USE_DETAILS_TO_EDIT = False  # required to have form in NEW_TAB
+#     USE_DETAILS_TO_ADD = False  # required to have form in NEW_TAB
+#     USE_DETAILS_TO_EDIT = False  # required to have form in NEW_TAB
 
 
 class UserForm(ModelFormWidget):
@@ -50,7 +50,7 @@ class UserForm(ModelFormWidget):
 
     READ_ONLY = ["username", "email", "last_login", "date_joined"]
 
-    INLINES = [MembershipInline]
+    # INLINES = [MembershipInline]
 
     LAYOUT_POSITION = conf.ORQUESTRA_NEW_TAB
 
