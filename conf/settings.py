@@ -188,22 +188,25 @@ SERVER_EMAIL = EMAIL_HOST_USER
 
 # django-allauth
 
-ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_SUBJECT_PREFIX = EMAIL_SUBJECT_PREFIX
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_SESSION_REMEMBER = True
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USER_DISPLAY = "users.utils.user_display_name"
+ACCOUNT_FORMS = {'signup': 'users.forms.SignupForm'}
 
 
 # django-rest-framework
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.TokenAuthentication",
         "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
     ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 50,
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
@@ -218,6 +221,11 @@ DYNAMIC_REST = {
     "ENABLE_LINKS": True,
     "DEBUG": DEBUG,
 }
+
+
+# confirm-users-app
+
+USER_EDIT_FORM = "users.apps.users.UserForm"
 
 
 try:
