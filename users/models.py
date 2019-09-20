@@ -44,8 +44,12 @@ class Institution(models.Model):
     name = models.CharField(max_length=150)
     short_name = models.CharField(max_length=20, blank=True)
 
+    is_congento_member = models.BooleanField(
+        verbose_name="Congento member", default=False
+    )
+
     def __str__(self):
-        return self.name
+        return self.short_name or self.name
 
 
 class InstitutionalEmailDomain(models.Model):

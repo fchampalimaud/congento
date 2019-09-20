@@ -31,7 +31,7 @@ class Rodent(models.Model):
     inducible_cassette = models.CharField(max_length=40, null=True, blank=True)
 
     remote_id = models.BigIntegerField("Remote id")
-    institution = models.ForeignKey("Institution", on_delete=models.CASCADE)
+    congento_member = models.ForeignKey("CongentoMember", on_delete=models.CASCADE)
 
     @property
     def institution_name(self):

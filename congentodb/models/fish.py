@@ -39,7 +39,7 @@ class Fish(models.Model):
 
     # Fields required for the sync mechanism
     remote_id = models.BigIntegerField("Remote ID")
-    institution = models.ForeignKey("Institution", on_delete=models.CASCADE)
+    congento_member = models.ForeignKey("CongentoMember", on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "fish"
@@ -50,7 +50,7 @@ class Fish(models.Model):
 
     @property
     def institution_name(self):
-        if self.institution is None:
+        if self.congento_member.institution is None:
             return None
         else:
-            return self.institution.name
+            return self.congento_member.institution.name

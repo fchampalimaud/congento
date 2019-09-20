@@ -22,4 +22,6 @@ class InstitutionalEmailDomainInline(admin.TabularInline):
 
 @admin.register(models.Institution)
 class InstitutionAdmin(admin.ModelAdmin):
+    list_display = ["name", "is_congento_member"]
+    search_fields = ["name", "short_name"]
     inlines = [InstitutionalEmailDomainInline]

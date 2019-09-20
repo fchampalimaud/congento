@@ -1,6 +1,7 @@
 from dynamic_rest.serializers import DynamicModelSerializer
 from rest_framework import serializers
-from ..models import Institution
+
+from ..models import CongentoMember
 
 
 class BaseSerializer(DynamicModelSerializer):
@@ -15,8 +16,8 @@ class BaseSerializer(DynamicModelSerializer):
             raise serializers.ValidationError("No institution associated to the user")
 
         try:
-            Institution.objects.get(user=request.user)
-        except Institution.DoesNotExist:
+            CongentoMember.objects.get(api_user=request.user)
+        except CongentoMember.DoesNotExist:
             raise serializers.ValidationError("No institution associated to the user")
 
         return data
@@ -24,13 +25,13 @@ class BaseSerializer(DynamicModelSerializer):
     def update(self, instance, data):
         request = self.context.get('request')
 
-        if instance.institution != Institution.objects.get(user=request.user):
+        if instance.congento_member != CongentoMember.objects.get(api_user=request.user):
             raise serializers.ValidationError("No permission to update this register")
 
         return super().update(instance, data)
 
     def create(self, data):
         request = self.context.get('request')
-        data['institution'] = Institution.objects.get(user=request.user)
+        data['congento_member'] = CongentoMember.objects.get(api_user=request.user)
         return super().create(data)
 

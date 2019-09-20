@@ -1,9 +1,10 @@
-from .models import Fly, Rodent, Fish, Institution
+from dynamic_rest.viewsets import DynamicModelViewSet
+from dynamic_rest.viewsets import exceptions
+
+from .models import CongentoMember, Fly, Rodent, Fish
 from .serializers.fly import FlySerializer
 from .serializers.rodent import RodentSerializer
 from .serializers.fish import FishSerializer
-from dynamic_rest.viewsets import DynamicModelViewSet
-from dynamic_rest.viewsets import exceptions
 
 
 
@@ -16,11 +17,11 @@ class BaseView(DynamicModelViewSet):
             raise exceptions.ValidationError("No institution associated to the user")
 
         try:
-            institution = Institution.objects.get(user=self.request.user)
-        except Institution.DoesNotExist:
+            congento_member = CongentoMember.objects.get(api_user=self.request.user)
+        except CongentoMember.DoesNotExist:
             raise exceptions.ValidationError("No institution associated to the user")
 
-        if instance.institution!=institution:
+        if instance.congento_member!=congento_member:
             raise exceptions.PermissionDenied('Objects deletion are allowed only for objects belonging the user institution.')
 
         return super().perform_destroy(instance)
@@ -33,12 +34,12 @@ class BaseView(DynamicModelViewSet):
         if self.request.query_params.get('filter{remote_id}', False):
 
             try:
-                institution = Institution.objects.get(user=self.request.user)
-            except Institution.DoesNotExist:
+                congento_member = CongentoMember.objects.get(api_user=self.request.user)
+            except CongentoMember.DoesNotExist:
                 raise exceptions.PermissionDenied(
                     'Objects deletion are allowed only for objects belonging the user institution.')
 
-            queryset = queryset.filter(institution=institution)
+            queryset = queryset.filter(congento_member=congento_member)
 
         return queryset
 

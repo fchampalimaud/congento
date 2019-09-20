@@ -35,7 +35,7 @@ class Fly(models.Model):
     line_description = models.TextField(blank=True)
 
     remote_id = models.BigIntegerField("Remote id")
-    institution = models.ForeignKey("Institution", on_delete=models.CASCADE)
+    congento_member = models.ForeignKey("CongentoMember", on_delete=models.CASCADE)
 
     class Meta:
         ordering = ["-id"]
@@ -47,10 +47,10 @@ class Fly(models.Model):
 
     @property
     def institution_name(self):
-        if self.institution is None:
+        if self.congento_member.institution is None:
             return None
         else:
-            return self.institution.name
+            return self.congento_member.institution.name
 
     def genotype(self):
 
