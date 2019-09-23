@@ -20,6 +20,9 @@ class User(AbstractUser):
     display_name = models.CharField(
         verbose_name="Display name", max_length=40, blank=True
     )
+    institution = models.ForeignKey(
+        to="Institution", on_delete=models.CASCADE, null=True, blank=True
+    )
 
     # notes = models.TextField(blank=True)
 
@@ -58,4 +61,5 @@ class InstitutionalEmailDomain(models.Model):
         max_length=40,
         help_text="eg. research.fchampalimaud.org",
     )
-    institution = models.ForeignKey(to="Institution", on_delete=models.CASCADE)
+    institution = models.ForeignKey(to="Institution", on_delete=models.CASCADE,
+        related_name="email_domains")

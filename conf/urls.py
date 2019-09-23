@@ -3,8 +3,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+from users import views as users_views
+
 urlpatterns = [
     path('api/', include('congentodb.urls')),
+
+    path('ajax/validate_institution/', users_views.validate_institution, name='validate_institution'),
 
     path("accounts/", include("allauth.urls")),
     path("pyforms/", include("pyforms_web.web.urls")),
