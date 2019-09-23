@@ -42,18 +42,18 @@ class User(AbstractUser):
 
 class Institution(models.Model):
     name = models.CharField(max_length=150)
-    short_name = models.CharField(max_length=20, blank=True)
+    acronym = models.CharField(max_length=20, blank=True)
 
     is_congento_member = models.BooleanField(
         verbose_name="Congento member", default=False
     )
 
     def __str__(self):
-        return self.short_name or self.name
+        return self.acronym or self.name
 
 
 class InstitutionalEmailDomain(models.Model):
-    name = models.CharField(
+    domain = models.CharField(
         verbose_name="Email domain",
         max_length=40,
         help_text="eg. research.fchampalimaud.org",
