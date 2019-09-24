@@ -6,10 +6,10 @@ class CongentoDBConfig(AppConfig):
     verbose_name = "Congento DB"
 
     def ready(self):
-        from .flies_list import FliesList
+        from .fly import FlyApp
         from .rodents_list import RodentsList
         from .fish_list import FishList
 
-        global FliesList
+        global FlyApp
         global RodentsList
         global FishList
