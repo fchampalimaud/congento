@@ -25,7 +25,8 @@ class User(AbstractUser):
     )
 
     institution_to_validate = models.CharField(
-        verbose_name="Institution (needs validation)", max_length=120, blank=True
+        verbose_name="Institution (needs validation)", max_length=120, blank=True,
+        help_text="Affiliation declared by the user on sign up"
     )
 
     # notes = models.TextField(blank=True)
