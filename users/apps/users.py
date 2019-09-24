@@ -4,37 +4,12 @@ from pyforms_web.organizers import segment
 from pyforms_web.widgets.django import ModelAdminWidget
 from pyforms_web.widgets.django import ModelFormWidget
 
-from .. import models
+from pyforms.controls import ControlButton
 
+from .. import models
+from .institutions import InstitutionForm
 
 User = get_user_model()
-
-
-# class MembershipInlineForm(ModelFormWidget):
-#     FIELDSETS = ["group", "is_responsible", "is_manager"]
-
-#     LAYOUT_POSITION = conf.ORQUESTRA_NEW_WINDOW
-
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-
-#         self.is_manager.checkbox_type = ""
-#         self.is_responsible.checkbox_type = ""
-
-#         self.is_manager.label_visible = False
-#         self.is_responsible.label_visible = False
-
-
-# class MembershipInline(ModelAdminWidget):
-#     MODEL = models.Membership
-
-#     LIST_DISPLAY = ["group", "is_responsible", "is_manager"]
-#     LIST_HEADERS = ["Group", "Responsible", "Manager"]
-
-#     EDITFORM_CLASS = MembershipInlineForm
-
-#     USE_DETAILS_TO_ADD = False  # required to have form in NEW_TAB
-#     USE_DETAILS_TO_EDIT = False  # required to have form in NEW_TAB
 
 
 class UserForm(ModelFormWidget):
@@ -45,17 +20,21 @@ class UserForm(ModelFormWidget):
             ("email", "date_joined", "last_login"),
             ("name", "display_name", "is_active"),
         ),
-        segment("h3:Groups", "MembershipInline"),
+        segment(("institution", "institution_to_validate", "_btn_new_institution")),
     ]
 
     READ_ONLY = ["username", "email", "last_login", "date_joined"]
-
-    # INLINES = [MembershipInline]
 
     LAYOUT_POSITION = conf.ORQUESTRA_NEW_TAB
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        self._btn_new_institution = ControlButton(
+            label='<i class="building icon"></i>Add Institution',
+            css="fluid green",
+            default=self.__tautau,
+        )
 
         self.is_active.checkbox_type = ""
 
@@ -64,6 +43,10 @@ class UserForm(ModelFormWidget):
         self.date_joined.label = "Date joined"
         self.last_login.label = "Last login"
         self.is_active.label = "Active"
+
+    def __tautau(self):
+        print(self)
+        print(InstitutionForm)
 
     @property
     def title(self):
@@ -82,17 +65,13 @@ class UsersListApp(ModelAdminWidget):
     LIST_DISPLAY = [
         "name",
         "email",
-        "get_group",
+        "institution",
         "is_active",
         "date_joined",
         "last_login",
     ]
 
-    LIST_FILTER = [
-        "memberships__group",
-        "memberships__group__accesses__animaldb",
-        "is_active",
-    ]
+    LIST_FILTER = ["institution", "is_active"]
 
     SEARCH_FIELDS = ["name__icontains", "email__icontains"]
 
@@ -107,7 +86,7 @@ class UsersListApp(ModelAdminWidget):
 
     @classmethod
     def has_permissions(cls, user):
-        if user.is_superuser or user.is_facility_staff():
+        if user.is_superuser:
             return True
         return False
 
@@ -117,33 +96,12 @@ class UsersListApp(ModelAdminWidget):
         self._list.headers = [
             "Name",
             "Email address",
-            "Group",
+            "Institution",
             "Active",
             "Date joined",
             "Last login",
         ]
         self._list.custom_filter_labels = {"is_active": "Active"}
-
-    def get_queryset(self, request, queryset):
-        user = request.user
-
-        if user.is_superuser:
-            return queryset
-        else:
-            queryset = self.model.db_users.all()
-
-            facility_users = queryset.none()
-
-            if user.is_admin("fishdb"):
-                facility_users |= queryset.fishdb_users()
-
-            if user.is_admin("flydb"):
-                facility_users |= queryset.flydb_users()
-
-            if user.is_admin("rodentdb"):
-                facility_users |= queryset.rodentdb_users()
-
-            return facility_users.distinct()
 
     def has_add_permissions(self):
         return False

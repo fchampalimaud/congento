@@ -7,8 +7,8 @@ class UsersConfig(AppConfig):
     def ready(self):
         from .. import signals  # noqa
 
-        # from .users import UsersListApp
+        from .users import UsersListApp
         from .institutions import InstitutionsListApp
 
-        # global UsersListApp
+        global UsersListApp
         global InstitutionsListApp
