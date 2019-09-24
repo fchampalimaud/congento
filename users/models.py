@@ -1,15 +1,11 @@
 import logging
 
-from allauth.account.models import EmailAddress
-from django.apps import apps
-from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import UserManager
 from django.core.exceptions import ValidationError
+from django.core.validators import MinLengthValidator
 from django.db import models
-from model_utils import Choices
 
-from .querysets import UserQuerySet
 
 logger = logging.getLogger(__name__)
 
@@ -25,8 +21,10 @@ class User(AbstractUser):
     )
 
     institution_to_validate = models.CharField(
-        verbose_name="Institution (needs validation)", max_length=120, blank=True,
-        help_text="Affiliation declared by the user on sign up"
+        verbose_name="Institution (needs validation)",
+        max_length=120,
+        blank=True,
+        help_text="Affiliation declared by the user on sign up. Write full name.",
     )
 
     # notes = models.TextField(blank=True)
@@ -55,7 +53,7 @@ class User(AbstractUser):
 
 
 class Institution(models.Model):
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=150, validators=[MinLengthValidator(4)])
     acronym = models.CharField(max_length=20, blank=True)
 
     is_congento_member = models.BooleanField(
@@ -72,5 +70,6 @@ class InstitutionalEmailDomain(models.Model):
         max_length=40,
         help_text="eg. research.fchampalimaud.org",
     )
-    institution = models.ForeignKey(to="Institution", on_delete=models.CASCADE,
-        related_name="email_domains")
+    institution = models.ForeignKey(
+        to="Institution", on_delete=models.CASCADE, related_name="email_domains"
+    )
