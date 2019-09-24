@@ -198,6 +198,9 @@ ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_USER_DISPLAY = "users.utils.user_display_name"
 ACCOUNT_FORMS = {'signup': 'users.forms.SignupForm'}
 
+ACCOUNT_ADAPTER = 'users.adapters.AccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'users.adapters.SocialAccountAdapter'
+
 
 # django-rest-framework
 
