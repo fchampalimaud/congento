@@ -25,7 +25,7 @@ class User(AbstractUser):
     )
 
     institution_to_validate = models.CharField(
-        verbose_name="Institution", max_length=120, blank=True
+        verbose_name="Institution (needs validation)", max_length=120, blank=True
     )
 
     # notes = models.TextField(blank=True)
