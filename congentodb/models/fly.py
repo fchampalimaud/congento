@@ -10,15 +10,15 @@ class Fly(models.Model):
         ("external", "External Lab"),
     )
 
-    created = models.DateTimeField('Created', auto_now_add=True)
-    modified = models.DateTimeField('Updated', auto_now=True)
-    categories = models.TextField('Category', blank=True, null=True)
-    species = models.CharField('Species', max_length=80)
-    origin = models.CharField(
-        max_length=8, choices=ORIGINS, default=ORIGINS.center
+    created = models.DateTimeField("Created", auto_now_add=True)
+    modified = models.DateTimeField("Updated", auto_now=True)
+    categories = models.TextField("Categories", blank=True, null=True)
+    species = models.CharField("Species", max_length=80)
+    origin = models.CharField(max_length=8, choices=ORIGINS, default=ORIGINS.center)
+    origin_center = models.CharField(
+        "Stock center", max_length=100, null=True, blank=True
     )
-    origin_center = models.CharField('Stock center', max_length=100, null=True, blank=True)
-    genotype = models.CharField('Genotype', max_length=255, blank=True)
+    genotype = models.CharField("Genotype", max_length=255, blank=True)
 
     chrx = models.CharField(max_length=60, verbose_name="Chromosome X", blank=True)
     chry = models.CharField(max_length=60, verbose_name="Chromosome Y", blank=True)
@@ -44,12 +44,13 @@ class Fly(models.Model):
     def __str__(self):
         return str(self.remote_id)
 
-    @property
-    def institution_name(self):
+    def get_institution_name(self):
         if self.congento_member.institution is None:
             return None
         else:
             return self.congento_member.institution.name
+
+    get_institution_name.short_description = "Provider institution"
 
     def genotype(self):
 

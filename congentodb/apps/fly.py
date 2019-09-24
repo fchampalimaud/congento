@@ -1,5 +1,4 @@
 from confapp import conf
-from pyforms_web.organizers import segment
 from pyforms_web.widgets.django import ModelAdminWidget
 from pyforms_web.widgets.django.modelviewform import ModelViewFormWidget
 
@@ -12,24 +11,18 @@ class FlyViewer(ModelViewFormWidget):
     LAYOUT_POSITION = conf.ORQUESTRA_NEW_BIGWINDOW
 
     FIELDSETS = [
-        'institution',
-        segment(
-            'specie',
-            ('legacy1', 'legacy2', 'legacy3'),
-            'category'
-        ),
-        'h3:Genotype',
-        segment(
-            'genotype',
-            ('chrx', 'chry', 'bal1'),
-            ('chr2', 'bal2'),
-            ('chr3', 'bal3'),
-            'chr4',
-            'chru'
-        ),
-        'h3:More',
-        segment('flydbid'),
+        ("species", "origin", "origin_center", "get_institution_name"),
+        "genotype",
+        ("categories", "special_husbandry_conditions", "line_description"),
     ]
+
+    @property
+    def title(self):
+        try:
+            return "Fly Stock"
+            # return self.model_object.species
+        except AttributeError:
+            pass  # apparently it defaults to App TITLE
 
 
 class FlyApp(ViewPermissionsMixin, ModelAdminWidget):
@@ -39,13 +32,15 @@ class FlyApp(ViewPermissionsMixin, ModelAdminWidget):
 
     TITLE = "Fly"
 
-    LIST_DISPLAY = ["species", "genotype", "categories", "origin", "institution_name"
-]
+    LIST_DISPLAY = ["species", "genotype", "origin", "get_institution_name"]
 
-    LIST_FILTER = ["species", "origin_center", "categories"]
+    LIST_FILTER = ["species", "origin", "origin_center", "congento_member__institution"]
 
     SEARCH_FIELDS = [
         "genotype__icontains",
+        "categories__icontains",
+        "special_husbandry_conditions__icontains",
+        "line_description__icontains",
     ]
 
     EDITFORM_CLASS = FlyViewer
