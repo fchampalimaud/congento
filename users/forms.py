@@ -34,8 +34,8 @@ class SignupForm(SignupForm):
         try:
             institution = InstitutionalEmailDomain.objects.get(domain=domain).institution
         except InstitutionalEmailDomain.DoesNotExist:
-            institution = None
-        finally:
+            user.institution_to_validate = self.cleaned_data["institution_name"]
+        else:
             user.institution = institution
 
         user.save()

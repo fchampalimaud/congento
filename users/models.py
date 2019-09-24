@@ -24,12 +24,22 @@ class User(AbstractUser):
         to="Institution", on_delete=models.CASCADE, null=True, blank=True
     )
 
+    institution_to_validate = models.CharField(
+        verbose_name="Institution", max_length=120, blank=True
+    )
+
     # notes = models.TextField(blank=True)
 
     objects = UserManager()
 
     def __str__(self):
         return f"{self.name} <{self.email}>"
+
+    def clean(self):
+        if self.institution is None:
+            raise ValidationError("Assign this User to a valid Institution.")
+        else:
+            self.institution_to_validate = ""
 
     def get_display_name(self):
         if self.display_name:
