@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from allauth.account.forms import SignupForm
 
 from .models import InstitutionalEmailDomain
-# from .models import Institution
+
 
 class SignupForm(SignupForm):
     name = forms.CharField(
@@ -21,18 +21,18 @@ class SignupForm(SignupForm):
         widget=forms.TextInput(attrs={"placeholder": _("Institution")}),
     )
 
-
     def custom_signup(self, request, user):
 
         print(self.cleaned_data)
-
 
         user.name = self.cleaned_data["name"]
 
         domain = self.cleaned_data["email"].split("@")[1]
 
         try:
-            institution = InstitutionalEmailDomain.objects.get(domain=domain).institution
+            institution = InstitutionalEmailDomain.objects.get(
+                domain=domain
+            ).institution
         except InstitutionalEmailDomain.DoesNotExist:
             user.institution_to_validate = self.cleaned_data["institution_name"]
         else:
