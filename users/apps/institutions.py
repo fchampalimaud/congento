@@ -6,32 +6,11 @@ from pyforms_web.widgets.django import ModelFormWidget
 from .. import models
 
 
-# class MembershipInlineForm(ModelFormWidget):
-#     FIELDSETS = [
-#         segment(
-#             ("email", "date_joined", "last_login"),
-#             ("name", "display_name", "is_active"),
-#         ),
-#     ]
-
-#     READ_ONLY = ["username", "email", "last_login", "date_joined"]
-
-#     LAYOUT_POSITION = conf.ORQUESTRA_NEW_WINDOW
-
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-
-
 class MembershipInline(ModelAdminWidget):
     MODEL = models.User
 
     LIST_DISPLAY = ["display_name", "email", "is_active"]
     LIST_HEADERS = ["Name", "Email", "Active"]
-
-    # EDITFORM_CLASS = MembershipInlineForm
-
-    USE_DETAILS_TO_ADD = False  # required to have form in NEW_TAB
-    USE_DETAILS_TO_EDIT = False  # required to have form in NEW_TAB
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

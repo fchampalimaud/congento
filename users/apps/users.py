@@ -7,7 +7,6 @@ from pyforms_web.widgets.django import ModelFormWidget
 from pyforms.controls import ControlButton
 
 from .. import models
-from .institutions import InstitutionForm
 
 User = get_user_model()
 
@@ -20,7 +19,10 @@ class UserForm(ModelFormWidget):
             ("email", "date_joined", "last_login"),
             ("name", "display_name", "is_active"),
         ),
-        segment(("institution", "institution_to_validate", "_btn_new_institution")),
+        segment(
+            "info:Select an Institution from the list or create a new one.",
+            ("institution", "institution_to_validate", "_btn_new_institution"),
+        ),
     ]
 
     READ_ONLY = ["username", "email", "last_login", "date_joined"]
@@ -33,7 +35,7 @@ class UserForm(ModelFormWidget):
         self._btn_new_institution = ControlButton(
             label='<i class="building icon"></i>Add Institution',
             css="fluid green",
-            default=self.__tautau,
+            default=self.__create_new_institution,
         )
 
         self.is_active.checkbox_type = ""
@@ -44,9 +46,26 @@ class UserForm(ModelFormWidget):
         self.last_login.label = "Last login"
         self.is_active.label = "Active"
 
-    def __tautau(self):
-        print(self)
-        print(InstitutionForm)
+    def __create_new_institution(self):
+        new_institution_name = self.institution_to_validate.value
+
+        if not new_institution_name:
+            self.alert("Institution name not provided.")
+            return
+
+        if len(new_institution_name) < 5:
+            self.alert("Institution name is too short.")
+            return
+
+        institution, created = models.Institution.objects.get_or_create(
+            name=new_institution_name
+        )
+
+        if created:
+            self.success("New institution created: %s" % institution)
+
+        self.institution.value = institution.pk
+        self.institution_to_validate.value = ""
 
     @property
     def title(self):
