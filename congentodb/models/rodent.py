@@ -23,22 +23,24 @@ class Rodent(models.Model):
     origin = models.CharField(max_length=40)
     origin_other = models.CharField(max_length=40, blank=True)
     category = models.CharField(max_length=40)
-    background = models.CharField(max_length=80, null=True, blank=True)
+    background = models.CharField(max_length=80, blank=True)
     zygosity = models.CharField(max_length=20, blank=True)
     line_description = models.TextField(blank=True)
-    coat_color = models.CharField(max_length=40, null=True, blank=True)
-    reporter_gene = models.CharField(max_length=40, null=True, blank=True)
-    inducible_cassette = models.CharField(max_length=40, null=True, blank=True)
+    coat_color = models.CharField(max_length=40, blank=True)
+    reporter_gene = models.CharField(max_length=40, blank=True)
+    inducible_cassette = models.CharField(max_length=40, blank=True)
 
-    remote_id = models.BigIntegerField("Remote id")
-    congento_member = models.ForeignKey("CongentoMember", on_delete=models.CASCADE)
-
-    @property
-    def institution_name(self):
-        if self.institution is None:
-            return None
-        else:
-            return self.institution.name
+    remote_id = models.BigIntegerField("Remote ID")
+    congento_member = models.ForeignKey(to="CongentoMember", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.strain_name
+
+    def get_institution_name(self):
+        if self.congento_member.institution is None:
+            return None
+        else:
+            return self.congento_member.institution.name
+
+    get_institution_name.short_description = "Provider"
+
