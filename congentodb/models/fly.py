@@ -50,7 +50,7 @@ class Fly(models.Model):
         else:
             return self.congento_member.institution.name
 
-    get_institution_name.short_description = "Provider institution"
+    get_institution_name.short_description = "Provider"
 
     def genotype(self):
 
