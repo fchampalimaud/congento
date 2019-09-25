@@ -1,11 +1,34 @@
 from confapp import conf
+from pyforms_web.organizers import no_columns
 from pyforms_web.widgets.django import ModelAdminWidget
+from pyforms_web.widgets.django.modelviewform import ModelViewFormWidget
 
 from congentodb.models import Fish
-from .fish_viewer import FishViewer
+
+from .utils import ViewPermissionsMixin
 
 
-class FishList(ModelAdminWidget):
+class FishViewer(ModelViewFormWidget):
+    LAYOUT_POSITION = conf.ORQUESTRA_NEW_BIGWINDOW
+
+    FIELDSETS = [
+        ("species_name", "category_name", "strain_name", "common_name"),
+        ("background", "genotype", "phenotype", "origin"),
+        ("availability", "link"),
+        no_columns("quarantine"),
+        no_columns("mta"),
+        "line_description",
+    ]
+
+    @property
+    def title(self):
+        try:
+            return "Fish"
+        except AttributeError:
+            pass  # apparently it defaults to App TITLE
+
+
+class FishApp(ViewPermissionsMixin, ModelAdminWidget):
 
     UID = "fish"
     MODEL = Fish
@@ -30,6 +53,7 @@ class FishList(ModelAdminWidget):
         # "location",
         "mta",
         "availability",
+        "congento_member__institution",
     ]
 
     SEARCH_FIELDS = [
@@ -43,7 +67,9 @@ class FishList(ModelAdminWidget):
     ]
 
     EDITFORM_CLASS = FishViewer
+
     USE_DETAILS_TO_EDIT = False
+    USE_DETAILS_TO_ADD = False
 
     LAYOUT_POSITION = conf.ORQUESTRA_HOME
     ORQUESTRA_MENU = "top"
@@ -52,15 +78,3 @@ class FishList(ModelAdminWidget):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
-    def has_add_permissions(self):
-        return False
-
-    def has_remove_permissions(self, obj):
-        return False
-
-    def has_view_permissions(self, obj):
-        return True
-
-    def has_update_permissions(self, obj):
-        return False

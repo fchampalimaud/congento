@@ -8,8 +8,8 @@ class CongentoDBConfig(AppConfig):
     def ready(self):
         from .fly import FlyApp
         from .rodent import RodentApp
-        from .fish_list import FishList
+        from .fish import FishApp
 
         global FlyApp
         global RodentApp
-        global FishList
+        global FishApp

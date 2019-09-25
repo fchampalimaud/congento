@@ -48,9 +48,10 @@ class Fish(models.Model):
     def __str__(self):
         return self.strain_name
 
-    @property
-    def institution_name(self):
+    def get_institution_name(self):
         if self.congento_member.institution is None:
             return None
         else:
             return self.congento_member.institution.name
+
+    get_institution_name.short_description = "Provider"
