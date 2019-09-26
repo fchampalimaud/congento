@@ -34,8 +34,8 @@ class Fish(models.Model):
     line_description = models.TextField(blank=True)
 
     # Foreign Keys swapped for CharFields
-    category_name = models.CharField(max_length=40)
-    species_name = models.CharField(max_length=80)
+    category_name = models.CharField(verbose_name="Category", max_length=40)
+    species_name = models.CharField(verbose_name="Species", max_length=80)
 
     # Fields required for the sync mechanism
     remote_id = models.BigIntegerField("Remote ID")
