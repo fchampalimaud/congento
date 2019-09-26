@@ -1,0 +1,23 @@
+i.congento-fish.icon {
+    background-color: currentColor;
+    -webkit-mask-image: url(congento-fish.svg);
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: top center;
+}
+
+i.congento-fly.icon {
+    background-color: currentColor;
+    -webkit-mask-image: url(congento-fly.svg);
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: top center;
+}
+
+i.congento-rodent.icon {
+    background-color: currentColor;
+    -webkit-mask-image: url(congento-rodent.svg);
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: top center;
+}

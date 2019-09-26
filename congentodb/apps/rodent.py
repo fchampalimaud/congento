@@ -78,7 +78,7 @@ class RodentApp(ViewPermissionsMixin, ModelAdminWidget):
     LAYOUT_POSITION = conf.ORQUESTRA_HOME
     ORQUESTRA_MENU = "top"
     ORQUESTRA_MENU_ORDER = 3
-    ORQUESTRA_MENU_ICON = "paw green"
+    ORQUESTRA_MENU_ICON = "large congento-rodent"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

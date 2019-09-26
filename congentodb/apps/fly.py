@@ -51,7 +51,7 @@ class FlyApp(ViewPermissionsMixin, ModelAdminWidget):
     LAYOUT_POSITION = conf.ORQUESTRA_HOME
     ORQUESTRA_MENU = "top"
     ORQUESTRA_MENU_ORDER = 2
-    ORQUESTRA_MENU_ICON = "bug red"
+    ORQUESTRA_MENU_ICON = "large congento-fly"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
