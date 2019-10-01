@@ -6,6 +6,15 @@ from pyforms_web.widgets.django import ModelFormWidget
 from .. import models
 
 
+class IntitutionalDomainInline(ModelAdminWidget):
+    MODEL = models.InstitutionalEmailDomain
+
+    LIST_DISPLAY = ["domain"]
+    LIST_HEADERS = ["Domain"]
+
+    FIELDSETS = ["domain"]
+
+
 class MembershipInline(ModelAdminWidget):
     MODEL = models.User
 
@@ -24,10 +33,11 @@ class MembershipInline(ModelAdminWidget):
 class InstitutionForm(ModelFormWidget):
     FIELDSETS = [
         ("name", [("acronym", "is_congento_member")]),
+        segment("h3:Email Domains", "IntitutionalDomainInline"),
         segment("h3:Institution Members", "MembershipInline"),
     ]
 
-    INLINES = [MembershipInline]
+    INLINES = [IntitutionalDomainInline, MembershipInline]
 
     LAYOUT_POSITION = conf.ORQUESTRA_NEW_TAB
 
