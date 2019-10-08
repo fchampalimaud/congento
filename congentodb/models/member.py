@@ -18,5 +18,7 @@ class CongentoMember(models.Model):
         limit_choices_to={"is_congento_member": True},
     )
 
+    # TODO
+
     def __str__(self):
         return self.institution.name
