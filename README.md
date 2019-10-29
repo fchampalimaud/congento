@@ -31,6 +31,15 @@ Use a local running instance of [MailHog](https://github.com/mailhog/MailHog)
 to test e-mails.
 
 
+## Development with Docker
+
+```bash
+docker-compose build
+docker-compose up
+docker-compose run django pipenv run python manage.py createsuperuser
+```
+
+
 ## Deployment
 
 ...
