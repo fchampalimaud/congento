@@ -17,8 +17,6 @@ services:
       WAIT_HOSTS: mysql:3306
     env_file:
         - .env
-    ports:
-      - "5000:5000"
     command: /start
 
   mysql:
