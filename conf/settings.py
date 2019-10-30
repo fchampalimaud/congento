@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv("SECRET_KEY", "changeme!")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", False)
+DEBUG = bool(os.getenv("DEBUG", False))
 
 ALLOWED_HOSTS = [
     hostname for hostname in os.getenv("ALLOWED_HOSTS", "localhost").split(",")
@@ -114,11 +114,9 @@ WSGI_APPLICATION = "conf.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": os.getenv("DATABASE_NAME"),
-        "USER": os.getenv("DATABASE_USERNAME"),
-        "PASSWORD": os.getenv("DATABASE_PASSWORD"),
-        "HOST": os.getenv("DATABASE_HOST", default="localhost"),
-        "PORT": os.getenv("DATABASE_PORT", default=3306),
+        "NAME": os.getenv("MYSQL_DATABASE"),
+        "PASSWORD": os.getenv("MYSQL_ROOT_PASSWORD"),
+        "HOST": os.getenv("MYSQL_HOST", default="localhost"),
     }
 }
 
@@ -232,8 +230,3 @@ DYNAMIC_REST = {
 # confirm-users-app
 
 USER_EDIT_FORM = "users.apps.users.UserForm"
-
-
-try:
-    exec(open("local-settings.py" ).read())
-except: pass
