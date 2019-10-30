@@ -61,7 +61,7 @@ cp .env.example .env
 Launch the containers
 
 ```bash
-docker-compose -f docker-compose.prod.yml up --build
+docker-compose -f docker-compose.prod.yml up --build -d
 ```
 
 
