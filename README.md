@@ -42,7 +42,28 @@ docker-compose run django pipenv run python manage.py createsuperuser
 
 ## Deployment
 
-...
+Make sure you have SSH keys configured for the production machine.
+
+Clone this repository into the production manchine and synchronize the submodules.
+
+```bash
+git clone git@github.com:fchampalimaud/congento-server.git
+git pull --recurse-submodules
+git submodule update --init --recursive
+```
+
+Configure environment variables in `.env`
+
+```bash
+cp .env.example .env
+```
+
+Launch the containers
+
+```bash
+docker-compose -f docker-compose.prod.yml up --build
+```
+
 
 ### Creating database dumps
 

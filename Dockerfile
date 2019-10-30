@@ -29,13 +29,13 @@ RUN apt-get update && \
 # Requirements are installed here to ensure they will be cached.
 # RUN pip install --upgrade pip
 RUN pip install pipenv
-COPY Pipfile* /app/
+# COPY Pipfile* /app/
 COPY ./libraries/pyforms-web /app/libraries/pyforms-web
 COPY ./plugins/confirm-users-app /app/plugins/confirm-users-app
 COPY ./plugins/notifications-central /app/plugins/notifications-central
-WORKDIR /app/
-RUN pipenv install --dev
-WORKDIR /
+# WORKDIR /app/
+# RUN pipenv install --dev
+# WORKDIR /
 
 COPY ./entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint
