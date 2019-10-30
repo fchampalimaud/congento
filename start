@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+if [ "${DEBUG:-False}" = "True" ]
+then
+    echo "Starting DEVELOPMENT server"
+    pipenv run python manage.py migrate
+    pipenv run python manage.py runserver 0.0.0.0:8000
+else
+    echo "Starting PRODUCTION server"
+    pipenv run python manage.py migrate
+    pipenv run python manage.py collectstatic --noinput
+    /usr/local/bin/gunicorn config.wsgi --bind 0.0.0.0:5000 --chdir=/app
+fi
+
+

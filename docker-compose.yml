@@ -6,9 +6,7 @@ volumes:
 
 services:
   django:
-    build:
-      context: .
-      dockerfile: ./compose/local/django/Dockerfile
+    build: .
     image: congento_local_django
     depends_on:
       - mysql
@@ -19,8 +17,6 @@ services:
       WAIT_HOSTS: mysql:3306
     env_file:
         - .env
-      # - ./.envs/.local/.django
-      # - ./.envs/.local/.mysql
     ports:
       - "8000:8000"
     command: /start
@@ -34,7 +30,6 @@ services:
       - local_mysql_data_backups:/backups
     env_file:
         - .env
-    #   - ./.envs/.local/.mysql
 
   mailhog:
     image: mailhog/mailhog:v1.0.0

@@ -1,6 +1,6 @@
 FROM python:3.7
 
-LABEL maintainer="Hugo Cachitas"
+LABEL maintainer="Scientific Software Platform"
 
 ENV PYTHONUNBUFFERED 1
 
@@ -37,11 +37,11 @@ WORKDIR /app/
 RUN pipenv install --dev
 WORKDIR /
 
-COPY ./compose/production/django/entrypoint /entrypoint
+COPY ./entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint
 RUN chmod +x /entrypoint
 
-COPY ./compose/local/django/start /start
+COPY ./start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 
