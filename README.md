@@ -44,6 +44,18 @@ docker-compose run django pipenv run python manage.py createsuperuser
 
 ...
 
+### Creating database dumps
+
+```bash
+docker-compose exec mysql sh -c 'export MYSQL_PWD="$MYSQL_ROOT_PASSWORD"; exec mysqldump --all-databases -uroot' > /some/path/on/your/host/all-databases.sql
+```
+
+### Restoring data from dump files
+
+```bash
+docker-compose exec -T mysql sh -c 'export MYSQL_PWD="$MYSQL_ROOT_PASSWORD"; exec mysql -uroot' < /some/path/on/your/host/all-databases.sql
+```
+
 
 ## Notes
 
