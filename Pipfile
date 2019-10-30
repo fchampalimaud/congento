@@ -13,6 +13,7 @@ mysqlclient = "*"
 dynamic-rest = "*"
 django-model-utils = "*"
 django-dotenv = "*"
+gunicorn = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"
