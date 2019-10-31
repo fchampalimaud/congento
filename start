@@ -6,12 +6,12 @@ set -o nounset
 
 if [ "${DEBUG:-False}" = "True" ]
 then
+    # Install missing dev dependencies
     pipenv install --dev
     echo "Starting DEVELOPMENT server"
     pipenv run python manage.py migrate
     pipenv run python manage.py runserver 0.0.0.0:8000
 else
-    pipenv install --deploy --ignore-pipfile
     echo "Starting PRODUCTION server"
     pipenv run python manage.py migrate
     pipenv run python manage.py collectstatic --noinput

@@ -7,7 +7,7 @@ volumes:
 services:
   django:
     build: .
-    # restart: on-failure
+    restart: on-failure
     image: congento_production_django
     depends_on:
       - mysql

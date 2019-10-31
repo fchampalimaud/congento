@@ -27,15 +27,14 @@ RUN apt-get update && \
 # ENV LANGUAGE en_US.UTF-8
 
 # Requirements are installed here to ensure they will be cached.
-# RUN pip install --upgrade pip
 RUN pip install pipenv
-# COPY Pipfile* /app/
+COPY ./Pipfile* /app/
 COPY ./libraries/pyforms-web /app/libraries/pyforms-web
 COPY ./plugins/confirm-users-app /app/plugins/confirm-users-app
 COPY ./plugins/notifications-central /app/plugins/notifications-central
-# WORKDIR /app/
-# RUN pipenv install --dev
-# WORKDIR /
+RUN cd /app && \
+    pipenv install --deploy --ignore-pipfile && \
+    cd /
 
 COPY ./entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint
