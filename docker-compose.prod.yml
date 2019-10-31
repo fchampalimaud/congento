@@ -38,6 +38,8 @@ services:
   nginx:
     image: nginx
     restart: always
+    depends_on:
+      - django
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./staticfiles:/static
