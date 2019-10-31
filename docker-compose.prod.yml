@@ -16,7 +16,7 @@ services:
     environment:
       WAIT_HOSTS: mysql:3306
     env_file:
-        - .env
+      - .env
     command: /start
 
   mysql:
