@@ -36,7 +36,7 @@ to test e-mails.
 ```bash
 docker-compose build
 docker-compose up
-docker-compose run django pipenv run python manage.py createsuperuser
+docker-compose exec django pipenv run python manage.py createsuperuser
 ```
 
 
