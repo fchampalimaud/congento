@@ -10,6 +10,10 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -182,6 +186,14 @@ EMAIL_USE_TLS = not DEBUG
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_SUBJECT_PREFIX = "[CONGENTO] "
 SERVER_EMAIL = EMAIL_HOST_USER
+
+
+# Sentry
+
+sentry_sdk.init(
+    dsn="https://e25767ef4203473bbf6301603d973229@sentry.io/1807538",
+    integrations=[DjangoIntegration()]
+)
 
 
 # django-allauth
