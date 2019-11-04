@@ -44,5 +44,3 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./staticfiles:/static
       - ./media:/media
-    ports:
-      - "80:80"
