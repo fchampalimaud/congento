@@ -1,3 +1,5 @@
+![Congento Logo](congento.png)
+
 # congento-server
 
 [Congento](https://congento.org/)
