@@ -9,10 +9,8 @@ Clone this repository and install all dependencies.
 
 ```bash
 git clone git@github.com:fchampalimaud/congento-server.git
-git pull --recurse-submodules
+git pull
 git submodule update --init --recursive
-
-pipenv sync --dev
 ```
 
 Configure the development environment from the example provided
@@ -21,17 +19,7 @@ Configure the development environment from the example provided
 cp .env.example .env
 ```
 
-Setup MySQL database schema `congentodb` and apply the migrations.
-
-```bash
-python manage.py migrate
-```
-
-Use a local running instance of [MailHog](https://github.com/mailhog/MailHog)
-to test e-mails.
-
-
-## Development with Docker
+Build the image and launch it. To create an admin user or run any command inside the container, see the examples below.
 
 ```bash
 docker-compose build
@@ -42,12 +30,19 @@ docker-compose exec django pipenv run python manage.py createsuperuser
 
 ## Deployment
 
-Make sure you have SSH keys configured for the production machine.
-
-Clone this repository into the production manchine and synchronize the submodules.
+Clone this repository into the production machine and synchronize the submodules.
 
 ```bash
-git clone git@github.com:fchampalimaud/congento-server.git
+git clone --branch master --single-branch https://github.com/fchampalimaud/congento-server.git
+cd congento-server
+perl -i -p -e 's|git@(.*?):|https://\1/|g' .gitmodules
+```
+
+> **Note:** the `perl` script is required to change submodules URLs to `https://` schema.
+
+Pull the latest modifications and update the submodules.
+
+```bash
 git pull --recurse-submodules
 git submodule update --init --recursive
 ```
@@ -61,7 +56,7 @@ cp .env.example .env
 Launch the containers
 
 ```bash
-docker-compose -f docker-compose.prod.yml up --build -d
+docker-compose -f docker-compose.prod.cf.yml up --build -d
 ```
 
 
