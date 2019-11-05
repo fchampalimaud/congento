@@ -1,8 +1,4 @@
-![Congento Logo](congento.png)
-
-# congento-server
-
-[Congento](https://congento.org/)
+[![Congento Logo](congento.png)](https://congento.org)
 
 
 ## Development
