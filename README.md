@@ -1,4 +1,10 @@
-[![Congento Logo](congento.png)](https://congento.org)
+<p align="center">
+ <p align="center">
+   <a href="https://congento.org" target="_blank">
+     <img src="congento.png" alt="CONGENTO" height="300">
+   </a>
+ </p>
+</p>
 
 
 ## Docker: configurations available
@@ -78,8 +84,3 @@ docker-compose exec mysql sh -c 'export MYSQL_PWD="$MYSQL_ROOT_PASSWORD"; exec m
 ```bash
 docker-compose exec -T mysql sh -c 'export MYSQL_PWD="$MYSQL_ROOT_PASSWORD"; exec mysql -uroot' < /some/path/on/your/host/all-databases.sql
 ```
-
-
-## Notes
-
-...
