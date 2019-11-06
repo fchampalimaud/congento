@@ -8,11 +8,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
+import logging
 import os
 import socket
 
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.logging import LoggingIntegration
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -191,12 +193,79 @@ EMAIL_SUBJECT_PREFIX = "[CONGENTO] "
 SERVER_EMAIL = EMAIL_HOST_USER
 
 
-# Sentry
+# LOGGING
+if DEBUG:
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            "verbose": {
+                "format": "%(levelname)s %(asctime)s %(module)s "
+                "%(process)d %(thread)d %(message)s"
+            }
+        },
+        "handlers": {
+            "console": {
+                "level": "DEBUG",
+                "class": "logging.StreamHandler",
+                "formatter": "verbose",
+            }
+        },
+        "root": {"level": "INFO", "handlers": ["console"]},
+    }
+else:
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": True,
+        "formatters": {
+            "verbose": {
+                "format": "%(levelname)s %(asctime)s %(module)s "
+                "%(process)d %(thread)d %(message)s"
+            }
+        },
+        "handlers": {
+            "console": {
+                "level": "DEBUG",
+                "class": "logging.StreamHandler",
+                "formatter": "verbose",
+            }
+        },
+        "root": {"level": "INFO", "handlers": ["console"]},
+        "loggers": {
+            "django.db.backends": {
+                "level": "ERROR",
+                "handlers": ["console"],
+                "propagate": False,
+            },
+            # Errors logged by the SDK itself
+            "sentry_sdk": {
+                "level": "ERROR",
+                "handlers": ["console"],
+                "propagate": False,
+            },
+            "django.security.DisallowedHost": {
+                "level": "ERROR",
+                "handlers": ["console"],
+                "propagate": False,
+            },
+        },
+    }
 
-sentry_sdk.init(
-    dsn="https://e25767ef4203473bbf6301603d973229@sentry.io/1807538",
-    integrations=[DjangoIntegration()]
-)
+
+# Sentry
+if not DEBUG:
+    SENTRY_DSN = os.getenv("SENTRY_DSN")
+    SENTRY_LOG_LEVEL = os.getenv("DJANGO_SENTRY_LOG_LEVEL", logging.INFO)
+    # FIXME
+    # SENTRY_DSN = env("SENTRY_DSN")
+    # SENTRY_LOG_LEVEL = env.int("DJANGO_SENTRY_LOG_LEVEL", logging.INFO)
+
+    sentry_logging = LoggingIntegration(
+        level=SENTRY_LOG_LEVEL,  # Capture info and above as breadcrumbs
+        event_level=logging.ERROR,  # Send errors as events
+    )
+
+    sentry_sdk.init(dsn=SENTRY_DSN, integrations=[sentry_logging, DjangoIntegration()])
 
 
 # django-allauth
