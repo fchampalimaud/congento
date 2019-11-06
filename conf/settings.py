@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import socket
 
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
