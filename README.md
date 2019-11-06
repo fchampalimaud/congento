@@ -21,8 +21,9 @@
 Clone this repository and install all dependencies.
 
 ```bash
-git clone git@github.com:fchampalimaud/congento-server.git
-git pull
+git clone git@github.com:fchampalimaud/congento.git
+cd congento
+git pull --recurse-submodules
 git submodule update --init --recursive
 ```
 
@@ -46,8 +47,8 @@ docker-compose exec django pipenv run python manage.py createsuperuser
 Clone this repository into the production machine and synchronize the submodules.
 
 ```bash
-git clone --branch master --single-branch https://github.com/fchampalimaud/congento-server.git
-cd congento-server
+git clone --branch master --single-branch https://github.com/fchampalimaud/congento.git
+cd congento
 perl -i -p -e 's|git@(.*?):|https://\1/|g' .gitmodules
 ```
 
