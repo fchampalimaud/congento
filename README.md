@@ -1,6 +1,15 @@
 [![Congento Logo](congento.png)](https://congento.org)
 
 
+## Docker: configurations available
+
+| Compose file                    | Usage              |
+| ---                             | ---                |
+| `docker-compose.yml`            | Development server |
+| `docker-compose.staging.yml`    | Staging server     |
+| `docker-compose.production.yml` | Production server  |
+
+
 ## Development
 
 Clone this repository and install all dependencies.
@@ -54,7 +63,7 @@ cp .env.example .env
 Launch the containers
 
 ```bash
-docker-compose -f docker-compose.prod.cf.yml up --build -d
+docker-compose -f docker-compose.production.yml up --build -d
 ```
 
 
