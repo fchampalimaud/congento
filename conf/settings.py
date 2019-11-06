@@ -49,10 +49,9 @@ MANAGERS = [
 # Application definition
 
 INSTALLED_APPS = [
-
     # local apps
     "congentodb.apps.CongentoDBConfig",
-    #"congento.apps.CongentoConfig",
+    # "congento.apps.CongentoConfig",
     "users.apps.UsersConfig",
     # 3rd party apps
     "confirm_users.apps.ConfirmUsersConfig",
@@ -151,7 +150,7 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = "users.User"
 
 LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "/"
@@ -278,10 +277,10 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = EMAIL_SUBJECT_PREFIX
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_USER_DISPLAY = "users.utils.user_display_name"
-ACCOUNT_FORMS = {'signup': 'users.forms.SignupForm'}
+ACCOUNT_FORMS = {"signup": "users.forms.SignupForm"}
 
-ACCOUNT_ADAPTER = 'users.adapters.AccountAdapter'
-SOCIALACCOUNT_ADAPTER = 'users.adapters.SocialAccountAdapter'
+ACCOUNT_ADAPTER = "users.adapters.AccountAdapter"
+SOCIALACCOUNT_ADAPTER = "users.adapters.SocialAccountAdapter"
 
 
 # django-rest-framework
@@ -291,24 +290,19 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.BasicAuthentication",
     ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 50,
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-        'dynamic_rest.renderers.DynamicBrowsableAPIRenderer'
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 50,
+    "DEFAULT_RENDERER_CLASSES": (
+        "rest_framework.renderers.JSONRenderer",
+        "dynamic_rest.renderers.DynamicBrowsableAPIRenderer",
     ),
-    'DEFAULT_PERMISSION_CLASSES': [
-        "congentodb.permissions.CustomPermission",
-    ]
+    "DEFAULT_PERMISSION_CLASSES": ["congentodb.permissions.CustomPermission"],
 }
 
 
 # dynamic-rest
 
-DYNAMIC_REST = {
-    "ENABLE_LINKS": True,
-    "DEBUG": DEBUG,
-}
+DYNAMIC_REST = {"ENABLE_LINKS": True, "DEBUG": DEBUG}
 
 
 # confirm-users-app

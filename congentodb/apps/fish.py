@@ -93,7 +93,9 @@ class NewFishViewer(BaseWidget):
         # Override the control used for all fields
         for field in self.model._meta.fields:
             setattr(
-                self, field.name, ControlReadOnlyField(obj=self.model_object, field=field)
+                self,
+                field.name,
+                ControlReadOnlyField(obj=self.model_object, field=field),
             )
 
         self.formset = [

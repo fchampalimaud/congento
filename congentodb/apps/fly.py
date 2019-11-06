@@ -32,7 +32,13 @@ class FlyApp(ViewPermissionsMixin, ModelAdminWidget):
 
     TITLE = "Fly"
 
-    LIST_DISPLAY = ["species", "genotype", "origin", "origin_center", "get_institution_name"]
+    LIST_DISPLAY = [
+        "species",
+        "genotype",
+        "origin",
+        "origin_center",
+        "get_institution_name",
+    ]
 
     LIST_FILTER = ["species", "origin", "origin_center", "congento_member__institution"]
 

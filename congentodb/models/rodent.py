@@ -43,4 +43,3 @@ class Rodent(models.Model):
             return self.congento_member.institution.name
 
     get_institution_name.short_description = "Provider"
-

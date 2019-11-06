@@ -11,16 +11,17 @@ def trigger_error(request):
 
 
 urlpatterns = [
-    path('sentry-debug/', trigger_error),
-
-    path('api/', include('congentodb.urls')),
-
-    path('ajax/validate_institution/', users_views.validate_institution, name='validate_institution'),
-
+    path("sentry-debug/", trigger_error),
+    path("api/", include("congentodb.urls")),
+    path(
+        "ajax/validate_institution/",
+        users_views.validate_institution,
+        name="validate_institution",
+    ),
     path("accounts/", include("allauth.urls")),
     path("pyforms/", include("pyforms_web.web.urls")),
     path("", include("orquestra.urls")),
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

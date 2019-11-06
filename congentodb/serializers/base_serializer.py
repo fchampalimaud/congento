@@ -10,7 +10,7 @@ class BaseSerializer(DynamicModelSerializer):
     institution_name = serializers.ReadOnlyField()
 
     def validate(self, data):
-        request = self.context.get('request')
+        request = self.context.get("request")
 
         if request.user.is_anonymous:
             raise serializers.ValidationError("No institution associated to the user")
@@ -23,15 +23,16 @@ class BaseSerializer(DynamicModelSerializer):
         return data
 
     def update(self, instance, data):
-        request = self.context.get('request')
+        request = self.context.get("request")
 
-        if instance.congento_member != CongentoMember.objects.get(api_user=request.user):
+        if instance.congento_member != CongentoMember.objects.get(
+            api_user=request.user
+        ):
             raise serializers.ValidationError("No permission to update this register")
 
         return super().update(instance, data)
 
     def create(self, data):
-        request = self.context.get('request')
-        data['congento_member'] = CongentoMember.objects.get(api_user=request.user)
+        request = self.context.get("request")
+        data["congento_member"] = CongentoMember.objects.get(api_user=request.user)
         return super().create(data)
-
