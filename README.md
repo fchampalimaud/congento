@@ -9,11 +9,11 @@
 
 ## Docker: configurations available
 
-| Compose file                    | Usage              |
-| ---                             | ---                |
-| `docker-compose.yml`            | Development server |
-| `docker-compose.staging.yml`    | Staging server     |
-| `docker-compose.production.yml` | Production server  |
+| Compose file | Usage |
+| --- | --- |
+| `docker-compose.yml` | Launch a development server |
+| `docker-compose.staging.yml` | Launch a staging server |
+| `docker-compose.production.yml` | Launch a production server |
 
 
 ## Development
