@@ -73,3 +73,6 @@ class InstitutionalEmailDomain(models.Model):
     institution = models.ForeignKey(
         to="Institution", on_delete=models.CASCADE, related_name="email_domains"
     )
+
+    def __str__(self):
+        return self.domain
