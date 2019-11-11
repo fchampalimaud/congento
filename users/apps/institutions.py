@@ -18,7 +18,7 @@ class IntitutionalDomainInline(ModelAdminWidget):
 class MembershipInline(ModelAdminWidget):
     MODEL = models.User
 
-    LIST_DISPLAY = ["display_name", "email", "is_active"]
+    LIST_DISPLAY = ["get_display_name", "email", "is_active"]
     LIST_HEADERS = ["Name", "Email", "Active"]
 
     def __init__(self, *args, **kwargs):

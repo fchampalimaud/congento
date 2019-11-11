@@ -82,7 +82,7 @@ class UsersListApp(ModelAdminWidget):
     TITLE = "Users"
 
     LIST_DISPLAY = [
-        "name",
+        "get_display_name",
         "email",
         "institution",
         "is_active",
