@@ -76,3 +76,13 @@ class InstitutionalEmailDomain(models.Model):
 
     def __str__(self):
         return self.domain
+
+    def validate_unique(self, exclude=None):
+        super().validate_unique(exclude=exclude)
+
+        if (
+            InstitutionalEmailDomain.objects.exclude(pk=self.pk)
+            .filter(domain=self.domain)
+            .exists()
+        ):
+            raise ValidationError("Domain must be unique per Institution")
