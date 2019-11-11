@@ -22,9 +22,6 @@ class SignupForm(SignupForm):
     )
 
     def custom_signup(self, request, user):
-
-        print(self.cleaned_data)
-
         user.name = self.cleaned_data["name"]
 
         domain = self.cleaned_data["email"].split("@")[1]
@@ -39,7 +36,5 @@ class SignupForm(SignupForm):
             user.institution = institution
 
         user.save()
-
-        print(user.institution)
 
         return user
