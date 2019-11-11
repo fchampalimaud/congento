@@ -35,7 +35,7 @@ class User(AbstractUser):
         return f"{self.name} <{self.email}>"
 
     def clean(self):
-        if self.institution is None:
+        if not self.is_superuser and self.institution is None:
             raise ValidationError("Assign this User to a valid Institution.")
         else:
             self.institution_to_validate = ""
