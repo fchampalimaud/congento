@@ -10,7 +10,7 @@ then
     pipenv install --dev
     echo "Starting DEVELOPMENT server"
     pipenv run python manage.py migrate
-    pipenv run python manage.py runserver 0.0.0.0:8000
+    pipenv run python manage.py runserver_plus 0.0.0.0:8000
 else
     echo "Starting PRODUCTION server"
     pipenv run python manage.py migrate

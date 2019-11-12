@@ -21,6 +21,7 @@ django-debug-toolbar = "*"
 black = "==19.3b0"
 django-extensions = "*"
 flake8 = "*"
+werkzeug = "*"
 
 [requires]
 python_version = "3.7"
