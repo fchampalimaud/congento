@@ -41,6 +41,11 @@ docker-compose up
 docker-compose exec django pipenv run python manage.py createsuperuser
 ```
 
+| Service | Address |
+| --- | --- |
+| Django | http://localhost:8000 |
+| MailHog | http://localhost:8025 |
+
 
 ## Deployment
 
