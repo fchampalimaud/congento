@@ -78,6 +78,29 @@ Launch the containers
 docker-compose -f docker-compose.production.yml up --build -d
 ```
 
+and create a superuser
+
+```bash
+docker-compose -f docker-compose.production.yml exec django pipenv run python manage.py createsuperuser
+```
+
+Log in to the `/admin` panel and configure
+
+- [ ] Admin account and email
+- [ ] Sites framework
+- [ ] Social Apps
+
+
+### Updates
+
+> **Backup the database before proceeding!**
+
+Restarting the container should be enough to collect static files and migrate the database.
+
+```bash
+docker-compose -f docker-compose.production.yml restart
+```
+
 
 ### Creating database dumps
 
