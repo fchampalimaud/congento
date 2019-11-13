@@ -98,8 +98,12 @@ Log in to the `/admin` panel and configure
 Restarting the container should be enough to collect static files and migrate the database.
 
 ```bash
+git pull
+git submodule update --init --recursive
 docker-compose -f docker-compose.production.yml restart
 ```
+
+Remeber to update `.env` file if needed.
 
 
 ### Creating database dumps
