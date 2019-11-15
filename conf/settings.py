@@ -122,6 +122,7 @@ WSGI_APPLICATION = "conf.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
+        "USER": "root",
         "NAME": os.getenv("MYSQL_DATABASE"),
         "PASSWORD": os.getenv("MYSQL_ROOT_PASSWORD"),
         "HOST": os.getenv("MYSQL_HOST", default="localhost"),
