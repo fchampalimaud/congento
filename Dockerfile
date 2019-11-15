@@ -3,6 +3,7 @@ FROM python:3.7
 LABEL maintainer="Scientific Software Platform"
 
 ENV PYTHONUNBUFFERED 1
+ENV PIPENV_VENV_IN_PROJECT 1
 
 RUN apt-get update && \
     apt-get -y install --upgrade \
@@ -10,16 +11,16 @@ RUN apt-get update && \
       # locales \
       # locales-all \
       # wget \
-      # apache2 \
-      # apache2-dev \
+      apache2 \
+      apache2-dev \
       default-mysql-client \
       default-libmysqlclient-dev \
       libcurl4-openssl-dev \
       libssl-dev \
       libffi-dev \
       libxml2-dev \
-      libxslt1-dev
-      # libapache2-mod-wsgi-py3 \
+      libxslt1-dev \
+      libapache2-mod-wsgi-py3
       # python3-opencv
 
 # ENV LC_ALL en_US.UTF-8
@@ -28,12 +29,14 @@ RUN apt-get update && \
 
 # Requirements are installed here to ensure they will be cached.
 RUN pip install pipenv
-COPY ./Pipfile* /app/
-COPY ./libraries/pyforms-web /app/libraries/pyforms-web
-COPY ./plugins/confirm-users-app /app/plugins/confirm-users-app
-COPY ./plugins/notifications-central /app/plugins/notifications-central
-RUN cd /app && \
+COPY ./Pipfile* /setup/
+COPY ./libraries/pyforms-web /setup/libraries/pyforms-web
+COPY ./plugins/confirm-users-app /setup/plugins/confirm-users-app
+COPY ./plugins/notifications-central /setup/plugins/notifications-central
+RUN cd /setup && \
     pipenv install --deploy --ignore-pipfile && \
+    #pipenv install --deploy && \
+    pipenv run pip list && \
     cd /
 
 COPY ./entrypoint /entrypoint

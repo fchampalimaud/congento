@@ -7,4 +7,7 @@ set -o nounset
 # wait until MySQL is really available (docker-compose-wait)
 /wait
 
+usermod -u 1000 www-data;
+groupmod -g 1000 www-data;
+
 exec "$@"
