@@ -9,8 +9,12 @@ services:
       - mysql
     volumes:
       - .:/app
+      - ./apache/sites-available:/etc/apache2/sites-available
     environment:
       WAIT_HOSTS: mysql:3306
+      VIRTUAL_HOST: congento.champalimaud.org
+      LETSENCRYPT_HOST: congento.champalimaud.org
+      LETSENCRYPT_EMAIL: software@research.fchampalimaud.org
     env_file:
         - .env
     command: /start
@@ -35,21 +39,21 @@ services:
   #   ports:
   #     - 8080:8080
 
-  nginx:
-    image: nginx
-    restart: always
-    depends_on:
-      - django
-    environment:
-      - VIRTUAL_HOST=congento.fchampalimaud.org
-      - LETSENCRYPT_HOST=congento.fchampalimaud.org
-      - LETSENCRYPT_EMAIL=software@research.fchampalimaud.org
-    volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./staticfiles:/static
-      - ./media:/media
-    networks:
-      - swp
+  #nginx:
+  #  image: nginx
+  #  restart: always
+  #  depends_on:
+  #    - django
+  #  environment:
+  #    - VIRTUAL_HOST=congento.champalimaud.org
+  #    - LETSENCRYPT_HOST=congento.champalimaud.org
+  #    - LETSENCRYPT_EMAIL=software@research.fchampalimaud.org
+  #  volumes:
+  #    - ./nginx/conf.d:/etc/nginx/conf.d
+  #    - ./staticfiles:/static
+  #    - ./media:/media
+  #  networks:
+  #    - swp
 
 networks:
   swp:
