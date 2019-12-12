@@ -41,8 +41,8 @@ services:
     depends_on:
       - django
     environment:
-      - VIRTUAL_HOST=congento.fchampalimaud.org
-      - LETSENCRYPT_HOST=congento.fchampalimaud.org
+      - VIRTUAL_HOST=database.congento.org
+      - LETSENCRYPT_HOST=database.congento.org
       - LETSENCRYPT_EMAIL=software@research.fchampalimaud.org
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
