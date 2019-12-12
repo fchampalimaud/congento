@@ -18,7 +18,7 @@
 
 ## Development
 
-Clone this repository and install all dependencies.
+Clone this repository and sync its submodules.
 
 ```bash
 git clone git@github.com:fchampalimaud/congento.git
