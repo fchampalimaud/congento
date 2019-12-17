@@ -18,7 +18,7 @@ sentry-sdk = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"
-black = "==19.3b0"
+black = "==19.10b0"
 django-extensions = "*"
 flake8 = "*"
 werkzeug = "*"
