@@ -143,10 +143,6 @@
             "index": "pypi",
             "version": "==1.4.6"
         },
-        "notifications-central": {
-            "editable": true,
-            "path": "./plugins/notifications-central"
-        },
         "numpy": {
             "hashes": [
                 "sha256:0a7a1dd123aecc9f0076934288ceed7fd9a81ba3919f11a855a7887cbe82a02f",

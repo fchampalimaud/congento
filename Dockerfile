@@ -31,7 +31,6 @@ RUN pip install pipenv
 COPY ./Pipfile* /app/
 COPY ./libraries/pyforms-web /app/libraries/pyforms-web
 COPY ./plugins/confirm-users-app /app/plugins/confirm-users-app
-COPY ./plugins/notifications-central /app/plugins/notifications-central
 RUN cd /app && \
     pipenv install --deploy --ignore-pipfile && \
     cd /

@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
     # 3rd party apps
     "confirm_users.apps.ConfirmUsersConfig",
-    "notifications.apps.NotificationsConfig",
     "orquestra",
     "pyforms_web.web",
     "jfu",

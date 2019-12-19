@@ -7,7 +7,6 @@ verify_ssl = true
 django = "~=2.2.0"
 pyforms-web = {editable = true,path = "./libraries/pyforms-web"}
 orquestra = {editable = true,path = "./libraries/pyforms-web/orquestra"}
-notifications-central = {editable = true,path = "./plugins/notifications-central"}
 confirm-users = {editable = true,path = "./plugins/confirm-users-app"}
 mysqlclient = "*"
 dynamic-rest = "*"
